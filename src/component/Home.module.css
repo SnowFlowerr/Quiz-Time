@@ -9,7 +9,6 @@
     border-radius: 20px;
 }
 .form{
-    /* border: 2px solid black; */
     width: 65vw;
     height: 60vh;
     margin: auto;
@@ -64,26 +63,22 @@
     display: flex;
     width: 88%;
     margin-left: 6%;
-    /* position: absolute; */
     justify-content: space-between;
-    /* border: 2px solid white; */
     padding-top: 2vh;
 }
 .marks div{
     margin-top: 3%;
     color: white;
     font-size: 7vw;
-    /* border: 2px solid white; */
-    /* width: 25%; */
 }
 .marks .names{
     font-size: 2vw;
     width: 25%;
 }
 .marks .quiznames{
-    /* font-size: 2vw; */
     width: 50%;
     text-align: center;
+    font-weight: 900;
 }
 .marks .quizscore{
     font-size: 2vw;
