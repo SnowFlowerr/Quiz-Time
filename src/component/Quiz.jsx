@@ -21,10 +21,17 @@ export default function Quiz() {
             },]
     });
     const [marks, setMarks] = useState(0);
+    const [submit, setSubmit] = useState(true);
     const [correct, setCorrect] = useState("");
     const [answer, setAnswer] = useState("");
+    const [total, setTotal] = useState(0);
     useEffect(() => {
         let sub = localStorage.getItem("sub");
+        if(localStorage.getItem("total")!==null){
+            setTotal(parseInt(localStorage.getItem("total")))
+        }
+        else{
+        }
         if (sub === "Maths") {
             setsubject(maths)
         }
@@ -41,48 +48,55 @@ export default function Quiz() {
 
     function handleNext(e) {
         e.preventDefault();
-        for (let i = 11; i <= 14; i++) {
-            if (document.getElementById(`${i}`).innerText === answer) {
-                document.getElementById(`${i}`).style.backgroundColor = "red"
+        if(submit){
+            setSubmit(false)
+            for (let i = 11; i <= 14; i++) {
+                if (document.getElementById(`${i}`).innerText === answer) {
+                    document.getElementById(`${i}`).style.backgroundColor = "red"
+                }
+                if (document.getElementById(`${i}`).innerText === correct) {
+                    document.getElementById(`${i}`).style.backgroundColor = "lightgreen"
+                }
+                // }
             }
-            if (document.getElementById(`${i}`).innerText === correct) {
-                document.getElementById(`${i}`).style.backgroundColor = "lightgreen"
+            if (answer === correct) {
+                setMarks(marks + 2)
+                success("Right Answer '+10 Marks' ")
             }
-            // }
-        }
-        if (answer === correct) {
-            setMarks(marks + 2)
-            success("Right Answer '+10 Marks' ")
-        }
-        else if (answer !== "" && answer !== correct) {
-            setMarks(marks - 1)
-            error("Wrong Answer '-10 Marks' ")
-        }
-        else if (answer === "") {
-            warning("You Won't Get Marks For This")
-        }
-        setTimeout(() => {
-            if (ind < 9) {
-                setInd(ind + 1);
+            else if (answer !== "" && answer !== correct) {
+                setMarks(marks - 1)
+                error("Wrong Answer '-10 Marks' ")
             }
-            setAnswer("")
-            if (ind === 9) {
-                handlesubmit();
+            else if (answer === "") {
+                warning("You Won't Get Marks For This")
             }
-            white()
-            setAnswer("")
-        }, 2000)
+            setTimeout(() => {
+                if (ind < 9) {
+                    setInd(ind + 1);
+                }
+                setAnswer("")
+                if (ind === 9) {
+                    handlesubmit();
+                }
+                white()
+                setAnswer("")
+                setSubmit(true)
+            }, 2000)
+        }
+        
     }
     function handleAnswer(e) {
         e.preventDefault();
-        if (answer === document.getElementById(e.target.id).innerText) {
-            document.getElementById(e.target.id).style.backgroundColor = "white"
-            setAnswer("")
-        }
-        else {
-            white();
-            document.getElementById(e.target.id).style.backgroundColor = "green"
-            setAnswer(document.getElementById(e.target.id).innerText)
+        if(submit){
+            if (answer === document.getElementById(e.target.id).innerText) {
+                document.getElementById(e.target.id).style.backgroundColor = "white"
+                setAnswer("")
+            }
+            else {
+                white();
+                document.getElementById(e.target.id).style.backgroundColor = "green"
+                setAnswer(document.getElementById(e.target.id).innerText)
+            }
         }
 
     }
@@ -93,7 +107,12 @@ export default function Quiz() {
         document.getElementById("14").style.backgroundColor = "white"
     }
     function handlesubmit() {
-        document.getElementById('result').style.visibility = 'visible'
+        if(submit){
+            document.getElementById('result').style.visibility = 'visible'
+            setTotal(total+marks)
+            localStorage.setItem("total",`${total+marks}`)
+            setSubmit(false);
+        }
     }
     function handleMenu(e) {
         e.preventDefault();
@@ -176,9 +195,9 @@ export default function Quiz() {
                         <div className={styles.part}>OF PARTICIPATION</div>
                         <div>PROUDLY REPRESENTED TO</div>
                         <div className={styles.name}>{detail.name}</div>
-                        <div className={styles.proud}>{marks} / 20</div>
                         <div className={styles.proud}>{subject.category} </div>
-                        <div className={styles.succ}>For Successfully Using Quiz-Time</div>
+                        <div className={styles.proud}>{marks} / 20 ({marks>=10?"Passed":"Failed"})</div>
+                        <div className={styles.succ}>For Successfully Using Quiz Time App</div>
                         <div className={styles.comp}>Competition ({new Date().toDateString()}) </div>
                         <div>We Acknowledge Your Effort Keep Participating</div>
                     </div>

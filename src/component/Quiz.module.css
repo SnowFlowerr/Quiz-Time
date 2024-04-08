@@ -68,13 +68,7 @@
     width: 100px;
     border-radius: 20px;
 }
-.marks{
-    display: flex;
-    width: 88%;
-    margin-left: 5%;
-    justify-content: space-between;
-    /* height: 20vh; */
-}
+
 .result{
     border: 2px solid white;
     position: absolute;
@@ -126,6 +120,14 @@
     display: flex;
     justify-content: space-between;
     width: 91.5%;
+}
+.marks{
+    display: flex;
+    width: 88%;
+    margin-left: 5%;
+    justify-content: space-between;
+    /* height: 20vh; */
+
 }
 .marks div{
     margin-top: 3%;

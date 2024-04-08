@@ -60,3 +60,34 @@
     font-size: 7vw;
     margin-bottom: 30px;
 }
+.marks{
+    display: flex;
+    width: 88%;
+    margin-left: 6%;
+    /* position: absolute; */
+    justify-content: space-between;
+
+    /* margin-bottom: 5vh; */
+    /* height: 20vh; */
+}
+.marks div{
+    margin-top: 3%;
+    color: white;
+    font-size: 7vw;
+    /* border: 2px solid white; */
+    /* width: 25%; */
+}
+.marks .names{
+    font-size: 2vw;
+    width: 25%;
+}
+.marks .quiznames{
+    /* font-size: 2vw; */
+    width: 50%;
+    text-align: center;
+}
+.marks .quizscore{
+    font-size: 2vw;
+    width: 25%;
+    text-align: right;
+}
