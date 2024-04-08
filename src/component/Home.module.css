@@ -66,9 +66,8 @@
     margin-left: 6%;
     /* position: absolute; */
     justify-content: space-between;
-
-    /* margin-bottom: 5vh; */
-    /* height: 20vh; */
+    /* border: 2px solid white; */
+    padding-top: 2vh;
 }
 .marks div{
     margin-top: 3%;
