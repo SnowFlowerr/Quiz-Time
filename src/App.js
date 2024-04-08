@@ -1,7 +1,6 @@
 import { Routes,Route } from "react-router-dom";
 import Home from "./component/Home";
 import Quiz from "./component/Quiz";
-import { useState } from "react";
 
 function App() {
   // const [detail,setDetail]=useState({name:"",date:"",email:""})

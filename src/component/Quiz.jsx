@@ -38,15 +38,6 @@ export default function Quiz() {
 
     function handleNext(e) {
         e.preventDefault();
-        // if(answer===correct){
-        //     for(let i=1;i<=4;i++){
-        //         if(document.getElementById(`${i}`).innerText===answer){
-        //             document.getElementById(`${i}`).style.backgroundColor="lightgreen"
-        //             break;
-        //         }
-        //     }
-        // }
-        // if(){
             for(let i=1;i<=4;i++){
                 if(document.getElementById(`${i}`).innerText===answer){
                     document.getElementById(`${i}`).style.backgroundColor="red"
@@ -65,7 +56,6 @@ export default function Quiz() {
         setTimeout(() => {
         if (ind < 9) {
                 setInd(ind + 1);
-                // setCorrect(subject.questions[ind + 1].correct_answer)
             }
             setAnswer("")
             white();
@@ -74,15 +64,6 @@ export default function Quiz() {
             }
         }, 2000)
     }
-    // function handlePrev(e) {
-    //     e.preventDefault();
-    //     if (ind > 0) {
-    //             setInd(ind - 1);
-    //             setCorrect(subject.questions[ind - 1].correct_answer)
-    //             setAnswer("")
-    //             white();
-    //     }
-    // }
     function handleAnswer(e) {
         e.preventDefault();
         if (answer === document.getElementById(e.target.id).innerText) {
@@ -102,8 +83,7 @@ export default function Quiz() {
         document.getElementById("3").style.backgroundColor = "white"
         document.getElementById("4").style.backgroundColor = "white"
     }
-    function handlesubmit(e){
-        e.preventDefault()
+    function handlesubmit(){
         document.getElementById('result').style.visibility='visible'
     }
     function handleMenu(e){
@@ -115,7 +95,6 @@ export default function Quiz() {
             <div className={styles.marks}>
                 <div>{ind + 1}.</div>
                 <div>Quiz Time</div>
-                {/* <div>{answer}{correct}</div> */}
                 <div>{marks}</div>
             </div>
             <div className={styles.quizbox}>
