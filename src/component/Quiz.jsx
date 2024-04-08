@@ -61,11 +61,11 @@ export default function Quiz() {
             }
             if (answer === correct) {
                 setMarks(marks + 2)
-                success("Right Answer '+10 Marks' ")
+                success("Right Answer '+2 Marks' ")
             }
             else if (answer !== "" && answer !== correct) {
                 setMarks(marks - 1)
-                error("Wrong Answer '-10 Marks' ")
+                error("Wrong Answer '-1 Marks' ")
             }
             else if (answer === "") {
                 warning("You Won't Get Marks For This")
