@@ -54,13 +54,16 @@ export default function Quiz() {
             }
         }
         setTimeout(() => {
-        if (ind < 9) {
+            if (ind < 9) {
                 setInd(ind + 1);
             }
             setAnswer("")
             white();
             if(ind===9){
                 handlesubmit();
+            }
+            if(answer===""){
+                alert("You Will Not Get Any Positive Or Negative Marks for Not Choosing The Solution")
             }
         }, 2000)
     }
