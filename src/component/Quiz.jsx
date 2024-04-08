@@ -51,11 +51,11 @@ export default function Quiz() {
             // }
         }
         if (answer === correct) {
-            setMarks(marks + 10)
+            setMarks(marks + 2)
             success("Right Answer '+10 Marks' ")
         }
         else if (answer !== "" && answer !== correct) {
-            setMarks(marks - 5)
+            setMarks(marks - 1)
             error("Wrong Answer '-10 Marks' ")
         }
         else if (answer === "") {
@@ -176,8 +176,8 @@ export default function Quiz() {
                         <div className={styles.part}>OF PARTICIPATION</div>
                         <div>PROUDLY REPRESENTED TO</div>
                         <div className={styles.name}>{detail.name}</div>
-                        <div className={styles.proud}>Score : {marks} / 100</div>
-                        <div className={styles.proud}>Subject : {subject.category} </div>
+                        <div className={styles.proud}>{marks} / 20</div>
+                        <div className={styles.proud}>{subject.category} </div>
                         <div className={styles.succ}>For Successfully Using Quiz-Time</div>
                         <div className={styles.comp}>Competition ({new Date().toDateString()}) </div>
                         <div>We Acknowledge Your Effort Keep Participating</div>
