@@ -96,7 +96,7 @@ export default function Quiz() {
             }
             else {
                 white();
-                document.getElementById(e.target.id).style.backgroundColor = "green"
+                document.getElementById(e.target.id).style.backgroundColor = "#ddab5d"
                 setAnswer(document.getElementById(e.target.id).innerText)
             }
         }
