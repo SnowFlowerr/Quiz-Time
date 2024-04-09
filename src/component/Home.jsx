@@ -28,8 +28,8 @@ export default function Home() {
             localStorage.setItem("date",detail.date);
             localStorage.setItem("email",detail.email);
             navigate("/quiz")
+            setDetail({name:"",date:"",email:""})
         }
-        setDetail({name:"",date:"",email:""})
     }
     function handleDetail(e){
         e.preventDefault();
