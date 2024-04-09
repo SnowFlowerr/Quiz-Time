@@ -28,6 +28,7 @@ export default function Quiz() {
 
     useEffect(() => {
         let sub = localStorage.getItem("sub");
+        
         if (localStorage.getItem("total") !== null) {
             setTotal(parseInt(localStorage.getItem("total")))
         }
@@ -44,7 +45,8 @@ export default function Quiz() {
         }
     }, [])
     useEffect(() => {
-        setCorrect(subject.questions[ind].correct_answer)
+        setCorrect(subject.questions[ind].correct_answer);
+        window.history.pushState({}, undefined, "/quiz");
     })
 
     function handleNext(e) {

@@ -8,8 +8,8 @@ export default function Home() {
 
     const navigate=useNavigate();
     useEffect(()=>{
-        // localStorage.setItem("total",0)
-    },[])
+        window.history.pushState({}, undefined, "/");
+    })
     function handleChange(e){
         e.preventDefault();
         setSub(e.target.value)
@@ -28,14 +28,17 @@ export default function Home() {
             localStorage.setItem("date",detail.date);
             localStorage.setItem("email",detail.email);
             navigate("/quiz")
+            
         }
     }
     function handleDetail(e){
         e.preventDefault();
         setDetail({...detail,[e.target.id]:e.target.value})
     }
+    
     return (
         <div className={styles.box}>
+        
                 <div className={styles.marks}>
                 <div className={styles.names}>{localStorage.getItem("name")===null?"Your Name":<span style={{ fontSize: '2.2vw',color:"aqua"}}>{localStorage.getItem("name")}</span>}</div>
                 <div className={styles.quiznames}>Quiz Time</div>
