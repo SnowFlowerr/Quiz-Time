@@ -16,7 +16,7 @@ export default function Home() {
     }
     function handleClick(e){
         e.preventDefault();
-        if(sub==="" || detail.name || detail.date || detail.email){
+        if(sub==="" || detail.name==="" || detail.date==="" || detail.email===""){
             alert("Fill The Details First")
         }
         else{
