@@ -156,6 +156,10 @@ export default function Quiz() {
             progress: undefined,
         });
     };
+    // ref={(ref) => { this.nav = ref; }}
+    // onNavigationStateChange={(prevState, currentState) => {
+    //     //call function on current view
+    // }}
     return (
         <>
             <ToastContainer

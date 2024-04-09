@@ -16,8 +16,8 @@ export default function Home() {
     }
     function handleClick(e){
         e.preventDefault();
-        if(sub===""){
-            alert("Choose the Subject")
+        if(sub==="" || detail.name || detail.date || detail.email){
+            alert("The Details First")
         }
         else{
             if(localStorage.getItem('name')!==detail.name){
