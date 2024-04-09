@@ -17,7 +17,7 @@ export default function Home() {
     function handleClick(e){
         e.preventDefault();
         if(sub==="" || detail.name || detail.date || detail.email){
-            alert("The Details First")
+            alert("Fill The Details First")
         }
         else{
             if(localStorage.getItem('name')!==detail.name){
@@ -28,8 +28,8 @@ export default function Home() {
             localStorage.setItem("date",detail.date);
             localStorage.setItem("email",detail.email);
             navigate("/quiz")
-            
         }
+        setDetail({name:"",date:"",email:""})
     }
     function handleDetail(e){
         e.preventDefault();
