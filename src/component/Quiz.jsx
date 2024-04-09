@@ -28,11 +28,9 @@ export default function Quiz() {
 
     useEffect(() => {
         let sub = localStorage.getItem("sub");
-        
+
         if (localStorage.getItem("total") !== null) {
             setTotal(parseInt(localStorage.getItem("total")))
-        }
-        else {
         }
         if (sub === "Maths") {
             setsubject(maths)
@@ -47,8 +45,9 @@ export default function Quiz() {
     useEffect(() => {
         setCorrect(subject.questions[ind].correct_answer);
         window.history.pushState({}, undefined, "/quiz");
+        setInd(parseInt(localStorage.getItem("index")))
+        setMarks(parseInt(localStorage.getItem("marks")))
     })
-
     function handleNext(e) {
         e.preventDefault();
         if (submit) {
@@ -62,13 +61,16 @@ export default function Quiz() {
                 }
                 // }
             }
+            // localStorage.setItem('index',ind+1);
             if (answer === correct) {
-                setMarks(marks + 2)
+                // setMarks(marks + 2)
                 setTotal(total + 2)
+                localStorage.setItem("marks",marks+2)
                 success("Right Answer '+2 Marks' ")
             }
             else if (answer !== "" && answer !== correct) {
-                setMarks(marks - 1)
+                // setMarks(marks - 1)
+                localStorage.setItem("marks",marks-1)
                 setTotal(total - 1)
                 error("Wrong Answer '-1 Marks' ")
             }
@@ -78,6 +80,7 @@ export default function Quiz() {
             setTimeout(() => {
                 if (ind < 9) {
                     setInd(ind + 1);
+                    localStorage.setItem("index", ind+1)
                 }
                 if (ind === 9) {
                     handlesubmit(e);
@@ -189,7 +192,7 @@ export default function Quiz() {
                             <div className={styles.opt} onClick={handleAnswer} id="11">{subject.questions[ind].options[0]}</div>
                             <div className={styles.opt} onClick={handleAnswer} id="12">{subject.questions[ind].options[1]}</div>
                         </div>
-                    <div className={styles.count}>
+                        <div className={styles.count}>
                         </div>
                         <div className={styles.row}>
                             <div className={styles.opt} onClick={handleAnswer} id="13">{subject.questions[ind].options[2]}</div>

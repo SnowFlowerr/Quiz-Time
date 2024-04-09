@@ -27,6 +27,8 @@ export default function Home() {
             localStorage.setItem("name",detail.name);
             localStorage.setItem("date",detail.date);
             localStorage.setItem("email",detail.email);
+            localStorage.setItem("index",0)
+            localStorage.setItem("marks",0)
             navigate("/quiz")
             setDetail({name:"",date:"",email:""})
         }
