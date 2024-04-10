@@ -10,6 +10,11 @@ export default function Home() {
     useEffect(()=>{
         window.history.pushState({}, undefined, "/");
     })
+    useEffect(()=>{
+        if(localStorage.getItem('name')!=="" || localStorage.getItem('date')!=="" || localStorage.getItem('email')!==""){
+            setDetail({"name":localStorage.getItem('name'),"date":localStorage.getItem('date'),"email":localStorage.getItem('email')})
+        }
+    },[])
     function handleChange(e){
         e.preventDefault();
         setSub(e.target.value)
@@ -30,29 +35,33 @@ export default function Home() {
             localStorage.setItem("index",0)
             localStorage.setItem("marks",0)
             navigate("/quiz")
-            setDetail({name:"",date:"",email:""})
+            // setDetail({name:"",date:"",email:""})
         }
     }
     function handleDetail(e){
         e.preventDefault();
         setDetail({...detail,[e.target.id]:e.target.value})
     }
-    
+    function handleClear(){
+        localStorage.setItem("name","");
+        localStorage.setItem("date","");
+        localStorage.setItem("email","");
+    }
     return (
         <div className={styles.box}>
         
                 <div className={styles.marks}>
-                <div className={styles.names}>{localStorage.getItem("name")===null?"Your Name":<span style={{ fontSize: '2.2vw',color:"aqua"}}>{localStorage.getItem("name")}</span>}</div>
+                <div className={styles.names}>{localStorage.getItem("name")===null || localStorage.getItem("name")===""?"Your Name":<span style={{ fontSize: '2.2vw',color:"aqua"}}>{localStorage.getItem("name")}</span>}</div>
                 <div className={styles.quiznames}>Quiz Time</div>
                 <div className={styles.quizscore}>Total : <span style={{ fontSize: '3vw',color:"aqua"}}>{localStorage.getItem("total")===null?"0":localStorage.getItem("total")}</span></div>
             </div>
             <form action="" className={styles.form}>
                 {/* <div className={styles.quiz}>Quiz Time</div> */}
-                <div><input type="text" onChange={handleDetail} id="name" placeholder='Enter Your Name' className={styles.input} required/></div>
-                <div><input type="date" id='date' onChange={handleDetail} className={styles.inputdate} required/></div>
-                <div><input type="email" id='email' onChange={handleDetail} placeholder='Enter Your Email' className={styles.inputdate} required/></div>
+                <div><input type="text" onChange={handleDetail} id="name" placeholder='Enter Your Name' value={detail.name} className={styles.input}/></div>
+                <div><input type="date" id='date' onChange={handleDetail} className={styles.inputdate} value={detail.date}/></div>
+                <div><input type="email" id='email' onChange={handleDetail} placeholder='Enter Your Email' className={styles.inputdate} value={detail.email}/></div>
                 <div>
-                <select name="" id="subject" className={styles.option} required onChange={handleChange}>
+                <select name="" id="subject" className={styles.option} onChange={handleChange}>
                     <option value="">Choose the Subject</option>
                     <option value="Maths">Maths</option>
                     <option value="Physics">Physics</option>
@@ -60,7 +69,10 @@ export default function Home() {
                 </select>
                 </div>
                 <div>
-                <button className={styles.subbtn} onClick={handleClick}>Start The Quiz</button></div>
+                <button className={styles.subbtn} onClick={handleClick}>Start The Quiz</button>
+                </div>
+                <br />
+                {detail.name!==""?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
             </form>
         </div>
     )
