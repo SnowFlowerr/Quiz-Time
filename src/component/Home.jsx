@@ -46,6 +46,7 @@ export default function Home() {
         localStorage.setItem("name","");
         localStorage.setItem("date","");
         localStorage.setItem("email","");
+        localStorage.setItem("total",0);
     }
     return (
         <div className={styles.box}>
