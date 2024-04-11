@@ -9,6 +9,18 @@ export default function Home() {
     const navigate=useNavigate();
     useEffect(()=>{
         window.history.pushState({}, undefined, "/");
+        if(detail.date===""){
+            document.getElementById("date").style.color="gray";
+        }
+        else{
+            document.getElementById("date").style.color="black";
+        }
+        if(sub===""){
+            document.getElementById("subject").style.color="gray";
+        }
+        else{
+            document.getElementById("subject").style.color="black";
+        }
     })
     useEffect(()=>{
         if(localStorage.getItem('name')!=="" || localStorage.getItem('date')!=="" || localStorage.getItem('email')!==""){
@@ -47,6 +59,7 @@ export default function Home() {
         localStorage.setItem("date","");
         localStorage.setItem("email","");
         localStorage.setItem("total",0);
+        setDetail({name:"",date:"",email:""})
     }
     return (
         <div className={styles.box}>
