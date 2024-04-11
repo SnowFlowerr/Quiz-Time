@@ -6,6 +6,9 @@ import maths from './data/maths'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import wrong from "./data/wronganswer-37702.mp3"
+import corr from "./data/rightanswer-95219.mp3"
+import noans from "./data/notification-5-140376.mp3"
 
 export default function Quiz() {
     const [ind, setInd] = useState(0);
@@ -42,6 +45,9 @@ export default function Quiz() {
             setsubject(chemistry)
         }
     }, [])
+    function play(sound){
+        new Audio(sound).play();
+    }
     useEffect(() => {
         setCorrect(subject.questions[ind].correct_answer);
         window.history.pushState({}, undefined, "/quiz");
@@ -65,22 +71,25 @@ export default function Quiz() {
             if (answer === correct) {
                 // setMarks(marks + 2)
                 setTotal(total + 2)
-                localStorage.setItem("marks",marks+2)
+                localStorage.setItem("marks", marks + 2)
                 success("Right Answer '+2 Marks' ")
+                play(corr)
             }
             else if (answer !== "" && answer !== correct) {
                 // setMarks(marks - 1)
-                localStorage.setItem("marks",marks-1)
+                localStorage.setItem("marks", marks - 1)
                 setTotal(total - 1)
                 error("Wrong Answer '-1 Marks' ")
+                play(wrong)
             }
             else if (answer === "") {
                 warning("You Won't Get Marks For This")
+                play(noans)
             }
             setTimeout(() => {
                 if (ind < 9) {
                     setInd(ind + 1);
-                    localStorage.setItem("index", ind+1)
+                    localStorage.setItem("index", ind + 1)
                 }
                 if (ind === 9) {
                     handlesubmit(e);
@@ -129,7 +138,7 @@ export default function Quiz() {
     const warning = (message) => {
         toast.warning(message, {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 500,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -140,7 +149,7 @@ export default function Quiz() {
     const error = (message) => {
         toast.error(message, {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 500,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -151,7 +160,7 @@ export default function Quiz() {
     const success = (message) => {
         toast.success(message, {
             position: "top-center",
-            autoClose: 2000,
+            autoClose: 500,
             hideProgressBar: true,
             closeOnClick: true,
             pauseOnHover: true,
@@ -167,7 +176,7 @@ export default function Quiz() {
         <>
             <ToastContainer
                 position="top-center"
-                autoClose={2000}
+                autoClose={500}
                 hideProgressBar
                 newestOnTop={false}
                 closeOnClick
@@ -176,6 +185,7 @@ export default function Quiz() {
                 draggable
                 pauseOnHover
             />
+            
             <div className={styles.box}>
                 <div className={styles.marks}>
                     <div className={styles.ques}><span className={styles.numb}> Ques : </span>{ind + 1}</div>
@@ -193,6 +203,7 @@ export default function Quiz() {
                             <div className={styles.opt} onClick={handleAnswer} id="12">{subject.questions[ind].options[1]}</div>
                         </div>
                         <div className={styles.count}>
+                        {/* {playing?<button onClick={play}>play</button>:""}<button onClick={stop}>stop</button> */}
                         </div>
                         <div className={styles.row}>
                             <div className={styles.opt} onClick={handleAnswer} id="13">{subject.questions[ind].options[2]}</div>
