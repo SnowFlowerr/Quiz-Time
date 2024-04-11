@@ -86,7 +86,7 @@ export default function Home() {
                 <button className={styles.subbtn} onClick={handleClick}>Start The Quiz</button>
                 </div>
                 <br />
-                {detail.name!==""?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
+                {detail.name!=="" && detail.name!==null?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
             </form>
         </div>
     )
