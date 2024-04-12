@@ -33,7 +33,7 @@ export default function Home() {
     }
     function handleClick(e){
         e.preventDefault();
-        if(sub==="" || detail.name==="" || detail.date==="" || detail.email===""){
+        if(sub==="" || detail.name.trim()==="" || detail.date.trim.trim()===""()){
             alert("Fill The Details First")
         }
         else{
@@ -86,7 +86,7 @@ export default function Home() {
                 <button className={styles.subbtn} onClick={handleClick}>Start The Quiz</button>
                 </div>
                 <br />
-                {detail.name!=="" && detail.name!==null?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
+                {detail.name.trim()!=="" && detail.name!==null?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
             </form>
         </div>
     )
