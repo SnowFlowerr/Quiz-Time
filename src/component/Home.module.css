@@ -36,6 +36,16 @@
     border-radius: 20px;
     box-shadow: 0px 0px 30px rgb(0, 0, 0);
 }
+.inputemail{
+    font-size: 2.5vh;
+    width: 50vw;
+    height: 5vh;
+    margin-bottom: 5vh;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 30px rgb(0, 0, 0);
+}
 .option{
     font-size: 2.5vh;
     width: 51.5vw;
@@ -45,7 +55,7 @@
     padding-right: 10px;
     border-radius: 20px;
     border: 2px groove black;
-    color: gray;
+    /* color: gray; */
     box-shadow: 0px 0px 30px rgb(0, 0, 0);
 }
 .subbtn{

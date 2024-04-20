@@ -9,7 +9,7 @@ export default function Home() {
     const navigate=useNavigate();
     useEffect(()=>{
         window.history.pushState({}, undefined, "/");
-        if(detail.date===""){
+        if(detail.date==="" || detail.date===null){
             document.getElementById("date").style.color="gray";
         }
         else{
@@ -24,7 +24,9 @@ export default function Home() {
     })
     useEffect(()=>{
         if(localStorage.getItem('name')!=="" || localStorage.getItem('date')!=="" || localStorage.getItem('email')!==""){
-            setDetail({"name":localStorage.getItem('name'),"date":localStorage.getItem('date'),"email":localStorage.getItem('email')})
+            setDetail({"name":localStorage.getItem('name'),
+                        "date":localStorage.getItem('date'),
+                        "email":localStorage.getItem('email')})
         }
     },[])
     function handleChange(e){
@@ -73,10 +75,10 @@ export default function Home() {
                 {/* <div className={styles.quiz}>Quiz Time</div> */}
                 <div><input type="text" onChange={handleDetail} id="name" placeholder='Enter Your Name' value={detail.name} className={styles.input}/></div>
                 <div><input type="date" id='date' onChange={handleDetail} className={styles.inputdate} value={detail.date}/></div>
-                <div><input type="email" id='email' onChange={handleDetail} placeholder='Enter Your Email' className={styles.inputdate} value={detail.email}/></div>
+                <div><input type="email" id='email' onChange={handleDetail} placeholder='Enter Your Email' className={styles.inputemail} value={detail.email}/></div>
                 <div>
                 <select name="" id="subject" className={styles.option} onChange={handleChange}>
-                    <option value="">Choose the Subject</option>
+                    <option selected value="" disabled >Choose the Subject</option>
                     <option value="Maths">Maths</option>
                     <option value="Physics">Physics</option>
                     <option value="Chemistry">Chemistry</option>
@@ -86,7 +88,7 @@ export default function Home() {
                 <button className={styles.subbtn} onClick={handleClick}>Start The Quiz</button>
                 </div>
                 <br />
-                {detail.name.trim()!=="" && detail.name!==null?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
+                {detail.name!=="" && detail.name!==null?<button className={styles.subbtn} onClick={handleClear}>Reset</button>:""}
             </form>
         </div>
     )
