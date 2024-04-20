@@ -53,30 +53,29 @@ export default function Quiz() {
         window.history.pushState({}, undefined, "/quiz");
         setInd(parseInt(localStorage.getItem("index")))
         setMarks(parseInt(localStorage.getItem("marks")))
+        if(localStorage.getItem('last')==="yes"){
+            handlesubmit();
+        }
     })
     function handleNext(e) {
         e.preventDefault();
         if (submit) {
             setSubmit(false)
-            for (let i = 11; i <= 14; i++) {
-                if (document.getElementById(`${i}`).innerText === answer) {
-                    document.getElementById(`${i}`).style.backgroundColor = "red"
+            for (let i = 1; i <= 4; i++) {
+                if (document.getElementById(`opt${i}`).innerText === answer) {
+                    document.getElementById(`opt${i}`).style.backgroundColor = "red"
                 }
-                if (document.getElementById(`${i}`).innerText === correct) {
-                    document.getElementById(`${i}`).style.backgroundColor = "lightgreen"
+                if (document.getElementById(`opt${i}`).innerText === correct) {
+                    document.getElementById(`opt${i}`).style.backgroundColor = "lightgreen"
                 }
-                // }
             }
-            // localStorage.setItem('index',ind+1);
             if (answer === correct) {
-                // setMarks(marks + 2)
                 setTotal(total + 2)
                 localStorage.setItem("marks", marks + 2)
                 success("Right Answer '+2 Marks' ")
                 play(corr)
             }
             else if (answer !== "" && answer !== correct) {
-                // setMarks(marks - 1)
                 localStorage.setItem("marks", marks - 1)
                 setTotal(total - 1)
                 error("Wrong Answer '-1 Marks' ")
@@ -90,13 +89,13 @@ export default function Quiz() {
                 if (ind < 9) {
                     setInd(ind + 1);
                     localStorage.setItem("index", ind + 1)
+                    setSubmit(true)
                 }
                 if (ind === 9) {
                     handlesubmit(e);
                 }
                 white()
                 setAnswer("")
-                setSubmit(true)
             }, 1000)
         }
 
@@ -117,22 +116,24 @@ export default function Quiz() {
 
     }
     function white() {
-        document.getElementById("11").style.backgroundColor = "white"
-        document.getElementById("12").style.backgroundColor = "white"
-        document.getElementById("13").style.backgroundColor = "white"
-        document.getElementById("14").style.backgroundColor = "white"
+        document.getElementById("opt1").style.backgroundColor = "white"
+        document.getElementById("opt2").style.backgroundColor = "white"
+        document.getElementById("opt3").style.backgroundColor = "white"
+        document.getElementById("opt4").style.backgroundColor = "white"
     }
     function handlesubmit(e) {
-        e.preventDefault();
+        // e.preventDefault();
         if (submit) {
             setSubmit(false);
             document.getElementById('result').style.visibility = 'visible'
             localStorage.setItem("total", `${total}`)
+            localStorage.setItem("last","yes")
         }
     }
     function handleMenu(e) {
         e.preventDefault();
         localStorage.setItem("total", `${total}`)
+        localStorage.setItem("last","no")
         navigate("/");
     }
     const warning = (message) => {
@@ -199,15 +200,15 @@ export default function Quiz() {
                     </div>
                     <div className={styles.options}>
                         <div className={styles.row}>
-                            <div className={styles.opt} onClick={handleAnswer} id="11">{subject.questions[ind].options[0]}</div>
-                            <div className={styles.opt} onClick={handleAnswer} id="12">{subject.questions[ind].options[1]}</div>
+                            <div className={styles.opt} onClick={handleAnswer} id="opt1">{subject.questions[ind].options[0]}</div>
+                            <div className={styles.opt} onClick={handleAnswer} id="opt2">{subject.questions[ind].options[1]}</div>
                         </div>
                         <div className={styles.count}>
                         {/* {playing?<button onClick={play}>play</button>:""}<button onClick={stop}>stop</button> */}
                         </div>
                         <div className={styles.row}>
-                            <div className={styles.opt} onClick={handleAnswer} id="13">{subject.questions[ind].options[2]}</div>
-                            <div className={styles.opt} onClick={handleAnswer} id="14">{subject.questions[ind].options[3]}</div>
+                            <div className={styles.opt} onClick={handleAnswer} id="opt3">{subject.questions[ind].options[2]}</div>
+                            <div className={styles.opt} onClick={handleAnswer} id="opt4">{subject.questions[ind].options[3]}</div>
                         </div>
                     </div>
                     <div className={styles.buttons}>

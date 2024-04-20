@@ -33,7 +33,7 @@ export default function Home() {
     }
     function handleClick(e){
         e.preventDefault();
-        if(sub==="" || detail.name.trim()==="" || detail.date.trim.trim()===""()){
+        if(sub==="" || detail.name.trim()==="" || detail.date.trim()===""){
             alert("Fill The Details First")
         }
         else{
@@ -46,8 +46,8 @@ export default function Home() {
             localStorage.setItem("email",detail.email);
             localStorage.setItem("index",0)
             localStorage.setItem("marks",0)
+            localStorage.setItem("last","no")
             navigate("/quiz")
-            // setDetail({name:"",date:"",email:""})
         }
     }
     function handleDetail(e){
