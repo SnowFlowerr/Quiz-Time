@@ -121,8 +121,7 @@ export default function Quiz() {
         document.getElementById("opt3").style.backgroundColor = "white"
         document.getElementById("opt4").style.backgroundColor = "white"
     }
-    function handlesubmit(e) {
-        // e.preventDefault();
+    function handlesubmit() {
         if (submit) {
             setSubmit(false);
             document.getElementById('result').style.visibility = 'visible'
