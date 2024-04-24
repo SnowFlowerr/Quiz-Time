@@ -1,4 +1,4 @@
-# React Quiz App
+# React Quiz Time
 
 This is a simple quiz app developed using React.
 
@@ -20,7 +20,7 @@ git clone https://github.com/your-username/react-quiz-app.git
 2. Navigate into the project directory:
 
 ```
-cd react-quiz-app
+cd quiz-time
 ```
 
 3. Install dependencies:
