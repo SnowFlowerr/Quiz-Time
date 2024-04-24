@@ -6,7 +6,6 @@ This is a simple quiz app developed using React.
 
 - Multiple-choice questions
 - Score tracking
-- Timer for each question
 - Responsive design
 
 ## Installation
