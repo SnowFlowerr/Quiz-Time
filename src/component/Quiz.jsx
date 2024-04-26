@@ -28,6 +28,7 @@ export default function Quiz() {
     const [correct, setCorrect] = useState("");
     const [answer, setAnswer] = useState("");
     const [total, setTotal] = useState(0);
+    const [time, settime] = useState(31)
 
     useEffect(() => {
         let sub = localStorage.getItem("sub");
@@ -44,8 +45,11 @@ export default function Quiz() {
         else if (sub === "Chemistry") {
             setsubject(chemistry)
         }
+        if (localStorage.getItem("time") !== null) {
+            settime(localStorage.getItem("time"));
+        }
     }, [])
-    function play(sound){
+    function play(sound) {
         new Audio(sound).play();
     }
     useEffect(() => {
@@ -53,12 +57,11 @@ export default function Quiz() {
         window.history.pushState({}, undefined, "/quiz");
         setInd(parseInt(localStorage.getItem("index")))
         setMarks(parseInt(localStorage.getItem("marks")))
-        if(localStorage.getItem('last')==="yes"){
+        if (localStorage.getItem('last') === "yes") {
             handlesubmit();
         }
     })
-    function handleNext(e) {
-        e.preventDefault();
+    function handleNext() {
         if (submit) {
             setSubmit(false)
             for (let i = 1; i <= 4; i++) {
@@ -90,9 +93,10 @@ export default function Quiz() {
                     setInd(ind + 1);
                     localStorage.setItem("index", ind + 1)
                     setSubmit(true)
+                    settime(30)
                 }
                 if (ind === 9) {
-                    handlesubmit(e);
+                    handlesubmit();
                 }
                 white()
                 setAnswer("")
@@ -126,13 +130,13 @@ export default function Quiz() {
             setSubmit(false);
             document.getElementById('result').style.visibility = 'visible'
             localStorage.setItem("total", `${total}`)
-            localStorage.setItem("last","yes")
+            localStorage.setItem("last", "yes")
         }
     }
     function handleMenu(e) {
         e.preventDefault();
         localStorage.setItem("total", `${total}`)
-        localStorage.setItem("last","no")
+        localStorage.setItem("last", "no")
         navigate("/");
     }
     const warning = (message) => {
@@ -168,10 +172,27 @@ export default function Quiz() {
             progress: undefined,
         });
     };
-    // ref={(ref) => { this.nav = ref; }}
-    // onNavigationStateChange={(prevState, currentState) => {
-    //     //call function on current view
-    // }}
+    useEffect(() => {
+        
+        if (time !== 0 && submit) {
+            setTimeout(() => {
+                if (time !== 0 && submit) {
+                    settime(time - 1);
+                    localStorage.setItem("time", time-1);
+                }
+            }, 1000);
+        }
+        if (time === 0) {
+            error("Time is Up")
+            handleNext();
+        }
+        if (time <= 10) {
+            document.getElementById("time").style.backgroundColor = "red";
+        }
+        else {
+            document.getElementById("time").style.backgroundColor = "black";
+        }
+    }, [time])
     return (
         <>
             <ToastContainer
@@ -185,7 +206,7 @@ export default function Quiz() {
                 draggable
                 pauseOnHover
             />
-            
+
             <div className={styles.box}>
                 <div className={styles.marks}>
                     <div className={styles.ques}><span className={styles.numb}> Ques : </span>{ind + 1}</div>
@@ -202,9 +223,7 @@ export default function Quiz() {
                             <div className={styles.opt} onClick={handleAnswer} id="opt1">{subject.questions[ind].options[0]}</div>
                             <div className={styles.opt} onClick={handleAnswer} id="opt2">{subject.questions[ind].options[1]}</div>
                         </div>
-                        <div className={styles.count}>
-                        {/* {playing?<button onClick={play}>play</button>:""}<button onClick={stop}>stop</button> */}
-                        </div>
+                        <div className={styles.time} id='time'>{time}</div>
                         <div className={styles.row}>
                             <div className={styles.opt} onClick={handleAnswer} id="opt3">{subject.questions[ind].options[2]}</div>
                             <div className={styles.opt} onClick={handleAnswer} id="opt4">{subject.questions[ind].options[3]}</div>
