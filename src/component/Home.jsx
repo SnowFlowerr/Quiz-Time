@@ -49,6 +49,9 @@ export default function Home() {
             localStorage.setItem("index",0)
             localStorage.setItem("marks",0)
             localStorage.setItem("last","no")
+            if(localStorage.getItem("time")!==null){
+                localStorage.removeItem("time");
+            }
             navigate("/quiz")
         }
     }

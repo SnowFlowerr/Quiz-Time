@@ -129,8 +129,9 @@ export default function Quiz() {
         if (submit) {
             setSubmit(false);
             document.getElementById('result').style.visibility = 'visible'
-            localStorage.setItem("total", `${total}`)
-            localStorage.setItem("last", "yes")
+            localStorage.setItem("total", `${total}`);
+            localStorage.setItem("last", "yes");
+            localStorage.removeItem("time");
         }
     }
     function handleMenu(e) {
