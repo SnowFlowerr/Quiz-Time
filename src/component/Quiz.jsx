@@ -28,7 +28,7 @@ export default function Quiz() {
     const [correct, setCorrect] = useState("");
     const [answer, setAnswer] = useState("");
     const [total, setTotal] = useState(0);
-    const [time, settime] = useState(31)
+    const [time, settime] = useState(30)
 
     useEffect(() => {
         let sub = localStorage.getItem("sub");
