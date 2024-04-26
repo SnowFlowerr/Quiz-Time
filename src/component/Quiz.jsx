@@ -50,7 +50,7 @@ export default function Quiz() {
         }
     }, [])
     function play(sound) {
-        new Audio(sound).play();
+        new Audio(`${sound}`).play();
     }
     useEffect(() => {
         setCorrect(subject.questions[ind].correct_answer);
