@@ -100,3 +100,30 @@
     width: 25%;
     text-align: right;
 }
+@media screen and (max-width:700px) {
+    .box{
+        height: 100dvh;
+        width: 100vw;
+        margin-top: 0px;
+        padding-top: 5vh;
+    }
+    .form{
+        width: 80vw;
+        height: 70dvh;
+        margin: auto;
+        padding-top: 10vh;
+        text-align: center;
+    }
+    .input{
+        width: 80vw;
+    }
+    .inputdate{
+        width: 80vw;
+    }
+    .inputemail{
+        width: 80vw;
+    }
+    .option{
+        width: 85.5vw;
+    }
+}

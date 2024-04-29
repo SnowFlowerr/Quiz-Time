@@ -60,6 +60,7 @@ export default function Quiz() {
         if (localStorage.getItem('last') === "yes") {
             handlesubmit();
         }
+        
     })
     function handleNext() {
         if (submit) {
@@ -184,8 +185,11 @@ export default function Quiz() {
             }, 1000);
         }
         if (time === 0) {
-            error("Time is Up")
+            error("Your Time is Up")
             handleNext();
+        }
+        if(time===10){
+            warning("Only 10 second remaining")
         }
         if (time <= 10) {
             document.getElementById("time").style.backgroundColor = "red";
@@ -225,6 +229,7 @@ export default function Quiz() {
                             <div className={styles.opt} onClick={handleAnswer} id="opt2">{subject.questions[ind].options[1]}</div>
                         </div>
                         <div className={styles.time} id='time'>{time}</div>
+                        
                         <div className={styles.row}>
                             <div className={styles.opt} onClick={handleAnswer} id="opt3">{subject.questions[ind].options[2]}</div>
                             <div className={styles.opt} onClick={handleAnswer} id="opt4">{subject.questions[ind].options[3]}</div>
